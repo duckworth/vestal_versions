@@ -14,6 +14,7 @@ RSpec.configure do |c|
   end
 
   c.after(:suite) do
+    ActiveRecord::Base.connection_pool.disconnect!
     FileUtils.rm_rf(File.expand_path('../test.db', __FILE__))
   end
 
