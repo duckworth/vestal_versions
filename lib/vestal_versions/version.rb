@@ -1,11 +1,10 @@
 require 'active_record'
-require 'active_support/configurable'
+require 'active_support/ordered_options'
 
 module VestalVersions
   # The ActiveRecord model representing versions.
   class Version < ActiveRecord::Base
     include Comparable
-    include ActiveSupport::Configurable
     include VersionUsers
     include VersionVersionTagging
 
@@ -18,6 +17,22 @@ module VestalVersions
 
     def self.table_name
       "vestal_versions"
+    end
+
+    def self.config
+      @_config ||= if superclass.respond_to?(:config)
+        superclass.config.inheritable_copy
+      else
+        ActiveSupport::InheritableOptions.new
+      end
+    end
+
+    def self.configure
+      yield config
+    end
+
+    def config
+      @_config ||= self.class.config.inheritable_copy
     end
 
     # ActiveRecord::Base#changes is an existing method, so before serializing the +changes+ column,

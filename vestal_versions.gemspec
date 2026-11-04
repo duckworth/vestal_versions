@@ -13,8 +13,8 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.7'
 
-  gem.add_dependency 'activerecord', '>= 7.0', '< 8'
-  gem.add_dependency 'activesupport', '>= 7.0', '< 8'
+  gem.add_dependency 'activerecord', '>= 7.0', '< 8.2'
+  gem.add_dependency 'activesupport', '>= 7.0', '< 8.2'
 
   gem.add_development_dependency 'bundler', '>= 1.0'
   gem.add_development_dependency 'rake', '~> 13.0'

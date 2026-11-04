@@ -11,7 +11,7 @@ name: Tests
     - develop
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -22,6 +22,12 @@ jobs:
           gemfile: gemfiles/activerecord_7_0.gemfile
         - ruby: 3.2.2
           gemfile: gemfiles/activerecord_7_1.gemfile
+        - ruby: 3.3.4
+          gemfile: gemfiles/activerecord_7_2.gemfile
+        - ruby: 3.2.2
+          gemfile: gemfiles/activerecord_8_0.gemfile
+        - ruby: 3.4.8
+          gemfile: gemfiles/activerecord_8_1.gemfile
         - ruby: ruby-head
           gemfile: Gemfile
         - ruby: ruby-head
@@ -31,14 +37,11 @@ jobs:
     env:
       BUNDLE_GEMFILE: "${{ matrix.gemfile }}"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - name: Install ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: "${{ matrix.ruby }}"
-    - name: Bundle
-      run: |
-        gem install bundler:2.3.26
-        bundle install --no-deployment
+        bundler-cache: true
     - name: Run tests
       run: bundle exec rspec

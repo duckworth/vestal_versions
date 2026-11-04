@@ -33,7 +33,16 @@ compatability for Rails 4+ with ProtectedAttributes gem.
 
 ## Compatibility
 
-Tested with Active Record 4.1.1 with Ruby 2.1.1
+Supports Active Record 7.0 through 8.1. Rails 8.0 and 8.1 require Ruby 3.2 or newer.
+Configuration uses `ActiveSupport::InheritableOptions`, preserving the `config`
+and `configure` APIs without Rails 8.1's `ActiveSupport::Configurable` deprecation.
+Active Record 8.2 and newer remain excluded until compatibility is verified.
+
+Run a compatibility suite by choosing `7_0`, `7_1`, `7_2`, `8_0`, or `8_1`:
+
+    AR_VERSION=8_0
+    BUNDLE_GEMFILE=gemfiles/activerecord_${AR_VERSION}.gemfile bundle install
+    BUNDLE_GEMFILE=gemfiles/activerecord_${AR_VERSION}.gemfile bundle exec rspec
 
 ## Installation
 
