@@ -24,7 +24,7 @@ jobs:
           gemfile: gemfiles/activerecord_7_1.gemfile
         - ruby: 3.3.4
           gemfile: gemfiles/activerecord_7_2.gemfile
-        - ruby: 3.3.4
+        - ruby: 3.2.2
           gemfile: gemfiles/activerecord_8_0.gemfile
         - ruby: 3.4.8
           gemfile: gemfiles/activerecord_8_1.gemfile
